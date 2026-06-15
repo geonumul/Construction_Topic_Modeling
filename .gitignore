@@ -1,0 +1,42 @@
+# ── USPTO Bulk Data (large, never commit) ────────────────────────────
+USPTO_BULK_XML/
+USPTO_BULK_Application_XML/
+*.xml
+*.zip
+
+# ── Metadata inputs (licensed / not redistributable) ─────────────────
+uspto/
+scopus/
+*.pdf
+
+# ── Generated outputs (regenerated from code) ────────────────────────
+output/
+
+# ── Logs, matching indexes, intermediate tables ──────────────────────
+logs/
+
+# ── Debug / temporary artifacts ──────────────────────────────────────
+*.sample*.*
+*.bak*.*
+*.tmp
+*.log
+
+# ── Python ───────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.Python
+
+# ── Jupyter ──────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── IDE / OS ─────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
