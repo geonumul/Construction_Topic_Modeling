@@ -1,0 +1,35 @@
+﻿Scopus-10-Analyze-Year
+
+"Your query : (TITLE-ABS-KEY ( ( ""construction site"" OR ""construction worker"" OR ""construction industry"" OR ""construction safety"" OR ""building construction"" OR ""civil engineering"" OR jobsite OR worksite OR scaffolding OR excavation ) AND ( safety OR hazard* OR inspection* OR monitor* OR accident* OR ""fall protection"" OR collision OR PPE OR ""personal protective equipment"" ) AND ( robot* OR autonomous OR unmanned OR UAV OR drone* OR quadruped OR humanoid OR cobot* OR ""automated inspection"" OR ""computer vision"" OR LiDAR OR ""machine vision"" OR AGV OR manipulator OR exoskeleton ) ) AND ( LIMIT-TO ( DOCTYPE,""cp"" ) OR LIMIT-TO ( DOCTYPE,""ar"" ) OR LIMIT-TO ( DOCTYPE,""re"" ) )  AND ( LIMIT-TO ( PUBYEAR,2000) OR LIMIT-TO ( PUBYEAR,2001) OR LIMIT-TO ( PUBYEAR,2002) OR LIMIT-TO ( PUBYEAR,2003) OR LIMIT-TO ( PUBYEAR,2004) OR LIMIT-TO ( PUBYEAR,2005) OR LIMIT-TO ( PUBYEAR,2006) OR LIMIT-TO ( PUBYEAR,2007) OR LIMIT-TO ( PUBYEAR,2008) OR LIMIT-TO ( PUBYEAR,2009) OR LIMIT-TO ( PUBYEAR,2010) OR LIMIT-TO ( PUBYEAR,2011) OR LIMIT-TO ( PUBYEAR,2012) OR LIMIT-TO ( PUBYEAR,2013) OR LIMIT-TO ( PUBYEAR,2014) OR LIMIT-TO ( PUBYEAR,2015) OR LIMIT-TO ( PUBYEAR,2016) OR LIMIT-TO ( PUBYEAR,2017) OR LIMIT-TO ( PUBYEAR,2018) OR LIMIT-TO ( PUBYEAR,2019) OR LIMIT-TO ( PUBYEAR,2020) OR LIMIT-TO ( PUBYEAR,2021) OR LIMIT-TO ( PUBYEAR,2022) OR LIMIT-TO ( PUBYEAR,2023) OR LIMIT-TO ( PUBYEAR,2024) OR LIMIT-TO ( PUBYEAR,2025) OR LIMIT-TO ( PUBYEAR,2026) )  AND ( LIMIT-TO ( SUBJAREA,""ENGI"" ) OR LIMIT-TO ( SUBJAREA,""COMP"" ) OR LIMIT-TO ( SUBJAREA,""BUSI"" ) OR LIMIT-TO ( SUBJAREA,""DECI"" ) ) )"
+
+
+Number of results : 10
+
+"YEAR",
+"2026","267"
+"2025","658"
+"2024","525"
+"2023","349"
+"2022","299"
+"2021","273"
+"2020","219"
+"2019","182"
+"2018","142"
+"2017","87"
+"2016","84"
+"2015","69"
+"2014","55"
+"2013","65"
+"2012","60"
+"2011","75"
+"2010","33"
+"2009","41"
+"2008","37"
+"2007","38"
+"2006","27"
+"2005","16"
+"2004","25"
+"2003","16"
+"2002","13"
+"2001","5"
+"2000","12"

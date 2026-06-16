@@ -1,0 +1,12 @@
+[2026-06-16 11:00:44] ============================================================
+[2026-06-16 11:00:44] CROSS-DOMAIN PIPELINE START (Scopus enabled)
+[2026-06-16 11:00:44] >>> B2_scopus_preprocess: start
+[2026-06-16 11:00:56] <<< B2_scopus_preprocess: OK in 13s
+[2026-06-16 11:00:56] >>> C3_combined_lda: start
+[2026-06-16 11:05:18] <<< C3_combined_lda: OK in 262s
+[2026-06-16 11:05:18] >>> E1_combined_lag: start
+[2026-06-16 11:05:21] <<< E1_combined_lag: OK in 2s
+[2026-06-16 11:05:21] >>> G_report: start
+[2026-06-16 11:05:38] <<< G_report: OK in 17s
+[2026-06-16 11:05:38] CROSS-DOMAIN PIPELINE DONE
+[2026-06-16 11:05:38] ============================================================

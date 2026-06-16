@@ -1,0 +1,26 @@
+[2026-06-16 13:39:48] ============================================================
+[2026-06-16 13:39:48] FULL RE-ANALYSIS START (complete dataset, combined topics)
+[2026-06-16 13:39:48] >>> integrate: start
+[2026-06-16 13:39:55] <<< integrate: OK in 6s
+[2026-06-16 13:39:55] >>> preprocess: start
+[2026-06-16 13:40:02] <<< preprocess: OK in 7s
+[2026-06-16 13:40:02] >>> combined_lda: start
+[2026-06-16 13:42:57] <<< combined_lda: OK in 175s
+[2026-06-16 13:42:57] >>> derive_doc_topics: start
+[2026-06-16 13:42:58] <<< derive_doc_topics: OK in 1s
+[2026-06-16 13:42:58] >>> rq1_2x2: start
+[2026-06-16 13:43:00] <<< rq1_2x2: OK in 2s
+[2026-06-16 13:43:00] >>> rq2_convergence: start
+[2026-06-16 13:43:01] <<< rq2_convergence: OK in 2s
+[2026-06-16 13:43:01] >>> rq4_actors: start
+[2026-06-16 13:43:06] <<< rq4_actors: OK in 4s
+[2026-06-16 13:43:06] >>> rq3_lag: start
+[2026-06-16 13:43:07] <<< rq3_lag: OK in 1s
+[2026-06-16 13:43:07] >>> originality: start
+[2026-06-16 13:43:08] <<< originality: OK in 1s
+[2026-06-16 13:43:08] >>> rq2_convergence_2: start
+[2026-06-16 13:43:09] <<< rq2_convergence_2: OK in 1s
+[2026-06-16 13:43:09] >>> report: start
+[2026-06-16 13:43:10] <<< report: OK in 1s
+[2026-06-16 13:43:10] FULL RE-ANALYSIS DONE in 3 min | status={'integrate': 'ok', 'preprocess': 'ok', 'combined_lda': 'ok', 'derive_doc_topics': 'ok', 'rq1_2x2': 'ok', 'rq2_convergence': 'ok', 'rq4_actors': 'ok', 'rq3_lag': 'ok', 'originality': 'ok', 'rq2_convergence_2': 'ok', 'report': 'ok'}
+[2026-06-16 13:43:10] ============================================================

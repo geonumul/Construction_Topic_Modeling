@@ -1,42 +1,26 @@
-# ── USPTO Bulk Data (large, never commit) ────────────────────────────
+# ── Raw USPTO bulk XML — EXCLUDED for a technical reason, not preference ──────
+# Individual weekly XML files are 500–700 MB each (GitHub rejects files >100 MB),
+# and the two folders total several hundred GB. Everything else (extracted data,
+# results, logs, metadata) IS committed.
 USPTO_BULK_XML/
 USPTO_BULK_Application_XML/
-*.xml
-*.zip
 
-# ── Metadata inputs (licensed / not redistributable) ─────────────────
-uspto/
-scopus/
-*.pdf
-
-# ── Generated outputs (regenerated from code) ────────────────────────
-output/
-
-# ── Logs, matching indexes, intermediate tables ──────────────────────
-logs/
-
-# ── Debug / temporary artifacts ──────────────────────────────────────
-*.sample*.*
-*.bak*.*
-*.tmp
-*.log
-
-# ── Python ───────────────────────────────────────────────────────────
+# ── Python / environment ─────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *.egg-info/
 .venv/
 venv/
 env/
-.Python
 
-# ── Jupyter ──────────────────────────────────────────────────────────
-.ipynb_checkpoints/
-
-# ── IDE / OS ─────────────────────────────────────────────────────────
+# ── Editor / OS ──────────────────────────────────────────────────────────────
 .vscode/
 .idea/
 *.swp
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# ── Local backups ────────────────────────────────────────────────────────────
+*.bak*.*
+*.prev*.*

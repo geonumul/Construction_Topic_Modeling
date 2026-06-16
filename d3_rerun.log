@@ -1,0 +1,33 @@
+[2026-06-16 09:42:31] D3: unique US cited patents to resolve = 9939
+[2026-06-16 09:42:31] D3 index scan 0/645 found=0/9939
+[2026-06-16 09:44:40] D3 index scan 25/645 found=78/9939
+[2026-06-16 09:47:00] D3 index scan 50/645 found=167/9939
+[2026-06-16 09:49:17] D3 index scan 75/645 found=262/9939
+[2026-06-16 09:51:41] D3 index scan 100/645 found=362/9939
+[2026-06-16 09:54:09] D3 index scan 125/645 found=461/9939
+[2026-06-16 09:56:36] D3 index scan 150/645 found=567/9939
+[2026-06-16 09:59:31] D3 index scan 175/645 found=693/9939
+[2026-06-16 10:02:43] D3 index scan 200/645 found=822/9939
+[2026-06-16 10:05:44] D3 index scan 225/645 found=929/9939
+[2026-06-16 10:08:47] D3 index scan 250/645 found=1021/9939
+[2026-06-16 10:12:08] D3 index scan 275/645 found=1122/9939
+[2026-06-16 10:15:52] D3 index scan 300/645 found=1207/9939
+[2026-06-16 10:19:32] D3 index scan 325/645 found=1284/9939
+[2026-06-16 10:23:25] D3 index scan 350/645 found=1351/9939
+[2026-06-16 10:34:51] D3 index scan 375/645 found=1405/9939
+[2026-06-16 10:41:16] D3 index scan 400/645 found=1454/9939
+[2026-06-16 10:50:41] D3 index scan 425/645 found=1485/9939
+[2026-06-16 10:58:26] D3 index scan 450/645 found=1521/9939
+[2026-06-16 11:02:12] D3 index scan 475/645 found=1560/9939
+[2026-06-16 11:12:04] D3 index scan 500/645 found=1590/9939
+[2026-06-16 11:29:21] D3 index scan 525/645 found=1614/9939
+[2026-06-16 11:33:23] D3 index scan 550/645 found=1616/9939
+[2026-06-16 11:37:28] D3 index scan 575/645 found=1619/9939
+[2026-06-16 11:41:34] D3 index scan 600/645 found=1621/9939
+[2026-06-16 11:45:33] D3 index scan 625/645 found=1622/9939
+[2026-06-16 11:48:37] D3: IPC index coverage 1623/9939 (16.3%)
+[2026-06-16 11:48:40] D3: cluster_originality.csv saved (15 clusters)
+[2026-06-16 11:48:43] D1/D2: cluster_cpc_diversity.csv + cluster_assignee_industry.csv (15 clusters)
+[2026-06-16 11:48:43] D4: originality_index merged in
+[2026-06-16 11:48:43] D4: cluster_convergence_scores.csv saved | top-3 external-convergence clusters=[8, 2, 3]
+[2026-06-16 11:48:45] G: final_report.md written

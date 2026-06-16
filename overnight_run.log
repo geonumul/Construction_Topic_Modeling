@@ -1,0 +1,225 @@
+================================================================
+OVERNIGHT AUTONOMOUS RUN — RQ 1-4 full analysis
+START: 2026-06-16 03:18:49
+Rules: no user questions; errors -> log & continue; no raw delete; no git push; no external API
+================================================================
+
+[2026-06-16 03:18:49] Phase A starting. Setup + environment check.
+
+[2026-06-16 03:19:18] DATA LIMITATION LOGGED (decision recorded):
+  - Scopus abstracts (prompt assumed 3,672 at /mnt/user-data/uploads/) are NOT present.
+  - Only scopus/Scopus-10-Analyze-Year (1).csv exists = YEAR-AGGREGATE counts (2005-2026), 3,672 total papers.
+  - DECISION: B2 (Scopus abstract preprocessing) -> SKIP (no abstracts). 
+  - DECISION: C3 LDA -> run on PATENTS ONLY (cross-domain paper LDA not possible).
+  - DECISION: E (RQ3 lag) -> aggregate paper-year vs patent-filing-year only (no per-cluster paper assignment possible).
+  - Rationale: safe option = proceed with available data, document gap. Patent-side RQ1/RQ2/RQ4 fully doable.
+[2026-06-16 03:19:43] Phase A: launched application extraction (673) in background; installing analysis libs
+[2026-06-16 03:22:47] downloading nltk data
+[2026-06-16 03:32:28] All analysis scripts written & validated (syntax OK, gensim coherence OK with processes=1, scipy present).
+  Pipeline ready: revisions_update -> integrate -> preprocess -> rq1 -> rq2 -> rq4 -> rq3 -> rq2_originality(optional) -> make_report.
+  Waiting for application extraction to finish before launching analysis/run_pipeline.py.
+  Extraction progress: ipa files:  32%|███▏      | 120/380 [12:40<51:17, 11.84s/file]
+[2026-06-16 05:13:01] Phase A extraction DONE: grants=445 + apps=488 = 933 patents (errors 0).
+  Application matchable 673 -> found 488; 185 'not_found_in_file' + 110 'no_file_in_range' logged.
+  KNOWN GAP (morning review): 185 apps whose Date Published maps to a held ipa file were not located inside it
+    (likely metadata pub-date vs bulk issue-date offset for some records; grep cross-check inconclusive due to encoding).
+  DECISION: proceed with 933-patent dataset (70% of 1,334); 185 flagged, non-blocking.
+[2026-06-16 05:13:16] DATA INTEGRITY: quantified empty ipa files (see above). These cause the 185 not-found. Logged for morning re-unzip. Proceeding with available data.
+[2026-06-16 05:13:33] 168 empty ipa files listed in logs/empty_ipa_files_to_reunzip.csv (re-unzip in morning to recover ~185 apps). LAUNCHING analysis pipeline now.
+[2026-06-16 05:13:47] ============================================================
+[2026-06-16 05:13:47] PIPELINE START (post-extraction phases A2->G)
+[2026-06-16 05:13:47] >>> A2_revisions: start (revisions_update.py )
+[2026-06-16 05:15:42] A2 revisions: 20 grant records found in revision files
+[2026-06-16 05:15:46] A2 revisions: applied 20 (content-changed 0) -> patents_full.jsonl
+[2026-06-16 05:15:46] <<< A2_revisions: OK in 119s
+[2026-06-16 05:15:46] >>> A3_integrate: start (integrate.py )
+[2026-06-16 05:15:50] A3 integrate: grants=445 apps=488 total=933
+[2026-06-16 05:15:54] A3 outputs: patents_full.jsonl=933 citations.csv=27698 abstracts_for_lda.csv=933
+[2026-06-16 05:15:54] A3 join check: metadata rows=1334 extracted=933 coverage=69.9%
+[2026-06-16 05:15:54] <<< A3_integrate: OK in 8s
+[2026-06-16 05:15:54] >>> B_preprocess: start (preprocess.py )
+[2026-06-16 05:16:05] B3 preprocess: 933 patents -> patents_processed.csv | mean tokens 595 | empty 0
+[2026-06-16 05:16:06] <<< B_preprocess: OK in 12s
+[2026-06-16 05:16:06] >>> C_rq1_clusters: start (rq1_clusters.py )
+[2026-06-16 05:16:07] RQ1 start: 933 patents loaded
+[2026-06-16 05:16:09] C1 citation net: total citations=27698 internal(both in set)=118
+[2026-06-16 05:16:09] C1 graph: nodes=933 edges=118 connected_components=829
+[2026-06-16 05:16:09] C2 louvain: raw communities=829 >=10 communities=1 sizes(top)=[(333, 12), (145, 8), (362, 7), (253, 7), (135, 6), (481, 5), (25, 4), (175, 4)]
+[2026-06-16 05:16:17] C3 LDA K=10 coherence_cv=0.3463
+[2026-06-16 05:16:24] C3 LDA K=15 coherence_cv=0.3506
+[2026-06-16 05:16:32] C3 LDA K=20 coherence_cv=0.3473
+[2026-06-16 05:16:41] C3 LDA K=25 coherence_cv=0.3366
+[2026-06-16 05:16:50] C3 LDA K=30 coherence_cv=0.3402
+[2026-06-16 05:17:00] C3 LDA K=35 coherence_cv=0.3334
+[2026-06-16 05:17:12] C3 LDA K=40 coherence_cv=0.3339
+[2026-06-16 05:17:12] C3 LDA best K=15 (max c_v)
+[2026-06-16 05:17:20] C3 LDA: topics.csv (15) + doc_topics.csv (933) saved
+[2026-06-16 05:17:20] C4 2x2: 15 clusters | Promising=4 | medians nov=0.690 growth=-0.061
+[2026-06-16 05:17:20] C4 2x2: figure 2x2_matrix.png saved
+[2026-06-16 05:17:20] RQ1 done
+[2026-06-16 05:17:21] <<< C_rq1_clusters: OK in 75s
+[2026-06-16 05:17:21] >>> D_rq2_convergence: start (rq2_convergence.py )
+[2026-06-16 05:17:22] D1/D2: cluster_cpc_diversity.csv + cluster_assignee_industry.csv (15 clusters)
+[2026-06-16 05:17:22] D4: cluster_originality.csv not present -> convergence from 3 dims
+[2026-06-16 05:17:22] D4: cluster_convergence_scores.csv saved | top-3 external-convergence clusters=[0, 10, 14]
+[2026-06-16 05:17:22] <<< D_rq2_convergence: OK in 2s
+[2026-06-16 05:17:22] >>> F_rq4_actors: start (rq4_actors.py )
+[2026-06-16 05:17:24] F1 country: 52 countries | top: [('US', 410), ('USUS', 259), ('KR', 38), ('CN', 35), ('CNCN', 21)]
+[2026-06-16 05:17:24] F2 org: 434 unique orgs | top: [('INTERNATIONAL BUSINESS MACHINES', 26), ('STATE FARM MUTUAL AUTOMOBILE INSURANCE', 25), ('CAVH', 21), ('SAMSUNG ELECTRONICS', 20), ('THE BOEING', 18)] | construction-assignee share 15/951
+[2026-06-16 05:17:26] F3: country_bar / organization_bar / cluster_country_heatmap saved
+[2026-06-16 05:17:26] <<< F_rq4_actors: OK in 4s
+[2026-06-16 05:17:26] >>> E_rq3_lag: start (rq3_lag.py )
+[2026-06-16 05:17:27] RQ3: paper-years=27 (total 3672) | patent filing-years span 2006-2025
+[2026-06-16 05:17:28] RQ3 E1 aggregate lag (tech behind science): {0.0: 6, 0.25: -1, 0.5: -2} | median paper 2022.0 vs median patent-filing 2020.0 -> ~-2.0y
+[2026-06-16 05:17:29] RQ3 E2: high-conv median filing 2020.0 vs low 2020.0 | MWU p=0.8623
+[2026-06-16 05:17:29] RQ3 E3: yearly_trend.csv + figure saved (22 years)
+[2026-06-16 05:17:29] <<< E_rq3_lag: OK in 3s
+[2026-06-16 05:17:29] >>> D3_originality: start (rq2_originality.py 150)
+[2026-06-16 05:17:30] D3: unique US cited patents to resolve = 9939
+[2026-06-16 05:17:30] D3 index scan 0/645 found=0/9939
+[2026-06-16 05:20:21] D3 index scan 25/645 found=78/9939
+[2026-06-16 05:23:52] D3 index scan 50/645 found=167/9939
+[2026-06-16 05:27:20] D3 index scan 75/645 found=262/9939
+[2026-06-16 05:30:56] D3 index scan 100/645 found=362/9939
+[2026-06-16 05:38:40] D3 index scan 125/645 found=461/9939
+[2026-06-16 08:20:05] D3: time cap hit at file 147/645 -> partial index
+[2026-06-16 08:20:05] D3: IPC index coverage 551/9939 (5.5%)
+[2026-06-16 08:20:07] D3: cluster_originality.csv saved (15 clusters)
+[2026-06-16 08:20:07] <<< D3_originality: TIMEOUT after 9600s -> continue
+[2026-06-16 08:20:07] >>> G_report: start (make_report.py )
+[2026-06-16 08:20:09] G: final_report.md written
+[2026-06-16 08:20:09] <<< G_report: OK in 2s
+[2026-06-16 08:20:10] overnight_summary.md written
+[2026-06-16 08:20:10] PIPELINE DONE
+[2026-06-16 08:20:10] ============================================================
+[2026-06-16 08:21:38] POST-RUN FIX: country code doubling (USUS->US) patched; re-running RQ4 + report
+[2026-06-16 08:21:40] F1 country: 32 countries | top: [('US', 669), ('KR', 57), ('CN', 56), ('DE', 20), ('JP', 20)]
+[2026-06-16 08:21:40] F2 org: 434 unique orgs | top: [('INTERNATIONAL BUSINESS MACHINES', 26), ('STATE FARM MUTUAL AUTOMOBILE INSURANCE', 25), ('CAVH', 21), ('SAMSUNG ELECTRONICS', 20), ('THE BOEING', 18)] | construction-assignee share 15/951
+[2026-06-16 08:21:42] F3: country_bar / organization_bar / cluster_country_heatmap saved
+[2026-06-16 08:21:44] G: final_report.md written
+[2026-06-16 09:42:30] RE-RUN: D3 originality optimized (regex prefilter), full corpus, cap 300min, then convergence+report
+[2026-06-16 09:42:31] D3: unique US cited patents to resolve = 9939
+[2026-06-16 09:42:31] D3 index scan 0/645 found=0/9939
+[2026-06-16 09:44:40] D3 index scan 25/645 found=78/9939
+[2026-06-16 09:47:00] D3 index scan 50/645 found=167/9939
+[2026-06-16 09:49:17] D3 index scan 75/645 found=262/9939
+[2026-06-16 09:51:41] D3 index scan 100/645 found=362/9939
+[2026-06-16 09:54:09] D3 index scan 125/645 found=461/9939
+[2026-06-16 09:56:36] D3 index scan 150/645 found=567/9939
+[2026-06-16 09:59:31] D3 index scan 175/645 found=693/9939
+[2026-06-16 10:02:43] D3 index scan 200/645 found=822/9939
+[2026-06-16 10:05:44] D3 index scan 225/645 found=929/9939
+[2026-06-16 10:08:47] D3 index scan 250/645 found=1021/9939
+[2026-06-16 10:12:08] D3 index scan 275/645 found=1122/9939
+[2026-06-16 10:15:52] D3 index scan 300/645 found=1207/9939
+[2026-06-16 10:19:32] D3 index scan 325/645 found=1284/9939
+[2026-06-16 10:23:25] D3 index scan 350/645 found=1351/9939
+[2026-06-16 10:34:51] D3 index scan 375/645 found=1405/9939
+[2026-06-16 10:41:16] D3 index scan 400/645 found=1454/9939
+[2026-06-16 10:50:41] D3 index scan 425/645 found=1485/9939
+[2026-06-16 10:58:26] D3 index scan 450/645 found=1521/9939
+[2026-06-16 11:00:43] CROSS-DOMAIN: Scopus 3675 papers available; launching combined chain (B2->combined LDA->per-topic lag->report) in parallel with D3
+[2026-06-16 11:00:44] ============================================================
+[2026-06-16 11:00:44] CROSS-DOMAIN PIPELINE START (Scopus enabled)
+[2026-06-16 11:00:44] >>> B2_scopus_preprocess: start
+[2026-06-16 11:00:46] B2: loaded 3675 papers from scopus_export_Jun 16-2026_9427f8b1-1329-4146-a837-605bd2eb6aed.csv
+[2026-06-16 11:00:56] B2: 3675 papers -> scopus_processed.csv | non-empty 3675 | mean tokens 124
+[2026-06-16 11:00:56] <<< B2_scopus_preprocess: OK in 13s
+[2026-06-16 11:00:56] >>> C3_combined_lda: start
+[2026-06-16 11:00:58] C3-combined: 4608 docs (933 patents + 3675 papers)
+[2026-06-16 11:01:21] C3-combined K=10 c_v=0.4272
+[2026-06-16 11:01:44] C3-combined K=15 c_v=0.4088
+[2026-06-16 11:02:10] C3-combined K=20 c_v=0.4058
+[2026-06-16 11:02:12] D3 index scan 475/645 found=1560/9939
+[2026-06-16 11:02:41] C3-combined K=25 c_v=0.4457
+[2026-06-16 11:03:13] C3-combined K=30 c_v=0.4338
+[2026-06-16 11:03:52] C3-combined K=35 c_v=0.4191
+[2026-06-16 11:04:37] C3-combined K=40 c_v=0.4130
+[2026-06-16 11:04:37] C3-combined best K=25
+[2026-06-16 11:05:18] C3-combined: topics_combined.csv (25) + doc_topics_combined.csv (4608) saved
+[2026-06-16 11:05:18] <<< C3_combined_lda: OK in 262s
+[2026-06-16 11:05:18] >>> E1_combined_lag: start
+[2026-06-16 11:05:20] E1-revised: 19 topics with both domains | overall median lag (tech behind science) = 0.0 years
+[2026-06-16 11:05:20] E1-revised: per-topic lag range -5 .. 5 years
+[2026-06-16 11:05:21] E1-revised: figure cluster_time_lag.png saved
+[2026-06-16 11:05:21] <<< E1_combined_lag: OK in 2s
+[2026-06-16 11:05:21] >>> G_report: start
+[2026-06-16 11:05:38] G: final_report.md written
+[2026-06-16 11:05:38] <<< G_report: OK in 17s
+[2026-06-16 11:05:38] CROSS-DOMAIN PIPELINE DONE
+[2026-06-16 11:05:38] ============================================================
+[2026-06-16 11:12:04] D3 index scan 500/645 found=1590/9939
+[2026-06-16 11:16:01] USER ACTION: deleted 0-byte empty ipa files (verified size==0 at delete time).
+[2026-06-16 11:26:18] RECOVERY: all 168 empty ipa weeks re-downloaded (689 files, 0 empty). Re-running full application extraction (parallel with D3) to recover ~185 apps.
+[2026-06-16 11:28:53] Stopped app re-extraction (disk contention w/ D3). Will run it solo after D3 finishes.
+[2026-06-16 11:29:21] D3 index scan 525/645 found=1614/9939
+[2026-06-16 11:33:23] D3 index scan 550/645 found=1616/9939
+[2026-06-16 11:37:28] D3 index scan 575/645 found=1619/9939
+[2026-06-16 11:41:34] D3 index scan 600/645 found=1621/9939
+[2026-06-16 11:45:33] D3 index scan 625/645 found=1622/9939
+[2026-06-16 11:48:37] D3: IPC index coverage 1623/9939 (16.3%)
+[2026-06-16 11:48:40] D3: cluster_originality.csv saved (15 clusters)
+[2026-06-16 11:48:43] D1/D2: cluster_cpc_diversity.csv + cluster_assignee_industry.csv (15 clusters)
+[2026-06-16 11:48:43] D4: originality_index merged in
+[2026-06-16 11:48:43] D4: cluster_convergence_scores.csv saved | top-3 external-convergence clusters=[8, 2, 3]
+[2026-06-16 11:48:45] G: final_report.md written
+[2026-06-16 11:50:14] D3 chain DONE (coverage 16.3%, citations_enriched.csv banked). Launching app re-extraction SOLO.
+[2026-06-16 13:39:46] App re-extraction DONE (672/674). Dataset now 445 grant + 672 app = 1117. Launching FULL RE-ANALYSIS.
+[2026-06-16 13:39:48] ============================================================
+[2026-06-16 13:39:48] FULL RE-ANALYSIS START (complete dataset, combined topics)
+[2026-06-16 13:39:48] >>> integrate: start
+[2026-06-16 13:39:50] A3 integrate: grants=445 apps=672 total=1117
+[2026-06-16 13:39:54] A3 outputs: patents_full.jsonl=1117 citations.csv=27698 abstracts_for_lda.csv=1117
+[2026-06-16 13:39:54] A3 join check: metadata rows=1334 extracted=1117 coverage=83.7%
+[2026-06-16 13:39:55] <<< integrate: OK in 6s
+[2026-06-16 13:39:55] >>> preprocess: start
+[2026-06-16 13:40:01] B3 preprocess: 1117 patents -> patents_processed.csv | mean tokens 594 | empty 0
+[2026-06-16 13:40:02] <<< preprocess: OK in 7s
+[2026-06-16 13:40:02] >>> combined_lda: start
+[2026-06-16 13:40:04] C3-combined: 4792 docs (1117 patents + 3675 papers)
+[2026-06-16 13:40:19] C3-combined K=10 c_v=0.4450
+[2026-06-16 13:40:35] C3-combined K=15 c_v=0.4606
+[2026-06-16 13:40:53] C3-combined K=20 c_v=0.4586
+[2026-06-16 13:41:13] C3-combined K=25 c_v=0.4378
+[2026-06-16 13:41:34] C3-combined K=30 c_v=0.4450
+[2026-06-16 13:41:59] C3-combined K=35 c_v=0.4283
+[2026-06-16 13:42:32] C3-combined K=40 c_v=0.4101
+[2026-06-16 13:42:32] C3-combined best K=15
+[2026-06-16 13:42:57] C3-combined: topics_combined.csv (15) + doc_topics_combined.csv (4792) saved
+[2026-06-16 13:42:57] <<< combined_lda: OK in 175s
+[2026-06-16 13:42:57] >>> derive_doc_topics: start
+[2026-06-16 13:42:58] derive_doc_topics: doc_topics.csv <- combined (1117 patents, 15 topics)
+[2026-06-16 13:42:58] <<< derive_doc_topics: OK in 1s
+[2026-06-16 13:42:58] >>> rq1_2x2: start
+[2026-06-16 13:42:59] 2x2: 15 clusters | Promising=6 (medians nov=0.694 growth=0.075)
+[2026-06-16 13:43:00] 2x2: figure saved
+[2026-06-16 13:43:00] <<< rq1_2x2: OK in 2s
+[2026-06-16 13:43:00] >>> rq2_convergence: start
+[2026-06-16 13:43:01] D1/D2: cluster_cpc_diversity.csv + cluster_assignee_industry.csv (15 clusters)
+[2026-06-16 13:43:01] D4: originality_index merged in
+[2026-06-16 13:43:01] D4: cluster_convergence_scores.csv saved | top-3 external-convergence clusters=[5, 9, 10]
+[2026-06-16 13:43:01] <<< rq2_convergence: OK in 2s
+[2026-06-16 13:43:01] >>> rq4_actors: start
+[2026-06-16 13:43:03] F1 country: 33 countries | top: [('US', 821), ('CN', 66), ('KR', 59), ('JP', 22), ('DE', 21)]
+[2026-06-16 13:43:03] F2 org: 522 unique orgs | top: [('INTERNATIONAL BUSINESS MACHINES', 32), ('STATE FARM MUTUAL AUTOMOBILE INSURANCE', 27), ('CAVH', 23), ('SAMSUNG ELECTRONICS', 21), ('THE BOEING', 20)] | construction-assignee share 16/1150
+[2026-06-16 13:43:06] F3: country_bar / organization_bar / cluster_country_heatmap saved
+[2026-06-16 13:43:06] <<< rq4_actors: OK in 4s
+[2026-06-16 13:43:06] >>> rq3_lag: start
+[2026-06-16 13:43:07] E1-revised: 12 topics with both domains | overall median lag (tech behind science) = 0.0 years
+[2026-06-16 13:43:07] E1-revised: per-topic lag range -2 .. 12 years
+[2026-06-16 13:43:07] E1-revised: figure cluster_time_lag.png saved
+[2026-06-16 13:43:07] <<< rq3_lag: OK in 1s
+[2026-06-16 13:43:07] >>> originality: start
+[2026-06-16 13:43:08] originality_from_enriched: cluster_originality.csv (15 clusters) from 3381 classified citations
+[2026-06-16 13:43:08] <<< originality: OK in 1s
+[2026-06-16 13:43:08] >>> rq2_convergence_2: start
+[2026-06-16 13:43:09] D1/D2: cluster_cpc_diversity.csv + cluster_assignee_industry.csv (15 clusters)
+[2026-06-16 13:43:09] D4: originality_index merged in
+[2026-06-16 13:43:09] D4: cluster_convergence_scores.csv saved | top-3 external-convergence clusters=[5, 10, 7]
+[2026-06-16 13:43:09] <<< rq2_convergence_2: OK in 1s
+[2026-06-16 13:43:09] >>> report: start
+[2026-06-16 13:43:10] G: final_report.md written
+[2026-06-16 13:43:10] <<< report: OK in 1s
+[2026-06-16 13:43:10] FULL RE-ANALYSIS DONE in 3 min | status={'integrate': 'ok', 'preprocess': 'ok', 'combined_lda': 'ok', 'derive_doc_topics': 'ok', 'rq1_2x2': 'ok', 'rq2_convergence': 'ok', 'rq4_actors': 'ok', 'rq3_lag': 'ok', 'originality': 'ok', 'rq2_convergence_2': 'ok', 'report': 'ok'}
+[2026-06-16 13:43:10] ============================================================
+[2026-06-16 13:49:32] overnight_summary.md updated to FINAL (1,117 patents). Run complete.

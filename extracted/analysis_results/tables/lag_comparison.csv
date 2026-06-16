@@ -1,0 +1,4 @@
+﻿group,n,median_filing_year,U,p_value
+high_convergence,516,2020.0,,
+low_convergence,417,2020.0,,
+MannWhitneyU,,,106880.0,0.8623

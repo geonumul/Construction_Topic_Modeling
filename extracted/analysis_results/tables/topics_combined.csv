@@ -1,0 +1,16 @@
+﻿topic_id,top_15_words,n_papers,n_patents
+0,"object, sensor, location, image, building, associated, machine, computer, determining, component, element, learning, area, set, processor",0,118
+1,"autonomous, path, excavator, point, set, hazard, tunnel, agent, trajectory, control, area, obstacle, plan, building, space",46,65
+2,"change, event, collision, position, cluster, graph, edge, marker, rail, distance, entity, order, time, sensor, particular",3,27
+3,"technology, site, project, application, research, industry, management, monitoring, development, design, work, cost, framework, building, time",1908,16
+4,"water, building, pipe, condition, control, energy, pipeline, flow, gas, module, air, sensor, operation, signal, time",3,61
+5,"power, sensor, module, control, drone, signal, unit, communication, location, controller, line, according, wireless, platform, remote",28,170
+6,"control, developed, physical, test, automation, robotics, challenge, machine, mining, operation, excavation, equipment, mine, simulation, industrial",21,22
+7,"vehicle, autonomous, control, traffic, infrastructure, road, driving, communication, route, operation, sensor, computer, function, practical, network",7,148
+8,"image, detection, vision, site, camera, time, object, monitoring, computer, real, algorithm, inspection, accuracy, video, point",973,56
+9,"network, user, computer, service, infrastructure, computing, monitoring, processor, machine, instruction, associated, time, performance, application, communication",1,237
+10,"robot, mobile, assembly, building, uas, collaboration, material, printing, user, egress, emergency, wall, plan, floor, within",2,30
+11,"inspection, structure, bridge, measurement, tunnel, structural, monitoring, surface, excavation, concrete, robot, displacement, ground, rock, damage",257,49
+12,"unmanned, aerial, uav, vehicle, flight, equipment, area, building, path, condition, time, wind, set, component, item",8,55
+13,"sensor, monitoring, concrete, change, alert, mobile, value, computer, infrastructure, rule, action, asset, drum, node, time",7,51
+14,"worker, risk, human, work, task, accident, environment, hazard, site, experiment, behavior, training, learning, interaction, activity",411,12

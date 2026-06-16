@@ -1,0 +1,16 @@
+﻿cluster_id,n_patents,novelty,growth,quadrant
+0,118,0.7288,0.1419,Promising
+1,65,0.7077,0.1067,Promising
+2,27,0.6667,0.2574,Established
+3,16,0.8125,0.4953,Promising
+4,61,0.6721,0.1067,Established
+5,170,0.5647,-0.0215,Declining
+6,22,0.9545,0.0,Emerging
+7,148,0.6892,-0.0834,Declining
+8,56,0.6964,0.5314,Promising
+9,237,0.6582,0.0287,Declining
+10,30,0.7667,0.0746,Promising
+11,49,0.6939,-0.1591,Emerging
+12,55,0.6727,-0.4054,Declining
+13,51,0.3922,0.0,Declining
+14,12,0.75,0.1447,Promising

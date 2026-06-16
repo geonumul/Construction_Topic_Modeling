@@ -1,0 +1,23 @@
+[2026-06-16 05:13:47] ============================================================
+[2026-06-16 05:13:47] PIPELINE START (post-extraction phases A2->G)
+[2026-06-16 05:13:47] >>> A2_revisions: start (revisions_update.py )
+[2026-06-16 05:15:46] <<< A2_revisions: OK in 119s
+[2026-06-16 05:15:46] >>> A3_integrate: start (integrate.py )
+[2026-06-16 05:15:54] <<< A3_integrate: OK in 8s
+[2026-06-16 05:15:54] >>> B_preprocess: start (preprocess.py )
+[2026-06-16 05:16:06] <<< B_preprocess: OK in 12s
+[2026-06-16 05:16:06] >>> C_rq1_clusters: start (rq1_clusters.py )
+[2026-06-16 05:17:21] <<< C_rq1_clusters: OK in 75s
+[2026-06-16 05:17:21] >>> D_rq2_convergence: start (rq2_convergence.py )
+[2026-06-16 05:17:22] <<< D_rq2_convergence: OK in 2s
+[2026-06-16 05:17:22] >>> F_rq4_actors: start (rq4_actors.py )
+[2026-06-16 05:17:26] <<< F_rq4_actors: OK in 4s
+[2026-06-16 05:17:26] >>> E_rq3_lag: start (rq3_lag.py )
+[2026-06-16 05:17:29] <<< E_rq3_lag: OK in 3s
+[2026-06-16 05:17:29] >>> D3_originality: start (rq2_originality.py 150)
+[2026-06-16 08:20:07] <<< D3_originality: TIMEOUT after 9600s -> continue
+[2026-06-16 08:20:07] >>> G_report: start (make_report.py )
+[2026-06-16 08:20:09] <<< G_report: OK in 2s
+[2026-06-16 08:20:10] overnight_summary.md written
+[2026-06-16 08:20:10] PIPELINE DONE
+[2026-06-16 08:20:10] ============================================================
